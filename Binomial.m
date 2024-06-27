@@ -1,6 +1,6 @@
 function Price = Binomial(S,K,T,r,vol,q,N,IsCall,IsAmer,Method)
 
-% function `Binomial` returns the `Price` of an option
+% function `Binomial` returns the `Price` of a European or American, Call or Put option with 4 calculation method choices (EQP, LR, CRR, TIAN)
 % Takes inputs:
     % - `S`: Current stock price
     % - `K`: Strike price of the option
