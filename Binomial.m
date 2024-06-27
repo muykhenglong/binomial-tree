@@ -1,13 +1,28 @@
 function Price = Binomial(S,K,T,r,vol,q,N,IsCall,IsAmer,Method)
 
+% function `Binomial` returns the `Price` of an option
+% Takes inputs:
+    - `S`: Current stock price
+    - `K`: Strike price of the option
+    - `T`: Time to expiration in years
+    - `r`: Risk-free rate
+    - `vol`: Volatility of the stock
+    - `q`: Dividend yield
+    - `N`: Number of time steps in the binomial model
+    - `IsCall`: Boolean indicating if the option is a call (1) or put (0)
+    - `IsAmer`: Boolean indicating if the option is American (1) or European (0)
+    - `Method`: String indicating which binomial model to use (`EQP`, `LR`, `CRR`, `TIAN`)
+
 dT = T/N;
 
+% Checks if the method specified is 'EQP' (Equal Probabilities)
 if strcmp(Method,'EQP')
     %EQP specification
     u=exp((r-q-(vol^2)/2)*dT + vol*sqrt(dT));
     d=exp((r-q-(vol^2)/2)*dT - vol*sqrt(dT));
     p=0.5;
- 
+
+% Checks if the method specified is 'LR' (Leisen-Reimer)
 elseif strcmp(Method,'LR')
     d1 = (log(S/K)+(r-q+vol^2/2)*T)/(vol*sqrt(T));
     d2 = d1 - vol * sqrt(T);
@@ -17,11 +32,14 @@ elseif strcmp(Method,'LR')
     d = (exp(r*dT) - u * p) / (1 - p);
 
 else
+% Default method is 'CRR' (Cox-Ross-Rubinstein)
     %CRR specification
     u=exp(vol * sqrt(dT));
     d=1/u;
+    
     if strcmp(Method,'TIAN')
-        %Strike exactly on Node - TIAN
+        % Adjusts up and down factors if the method is 'TIAN'
+        % Strike exactly on Node - TIAN
         j=ceil((log(K/S)- N*log(d))/(log(u/d)));
         tilt = (K/(S*(u^j)*(d^(N-j))))^(1/N);
         u=u*tilt;
