@@ -2,16 +2,16 @@ function Price = Binomial(S,K,T,r,vol,q,N,IsCall,IsAmer,Method)
 
 % function `Binomial` returns the `Price` of an option
 % Takes inputs:
-    - `S`: Current stock price
-    - `K`: Strike price of the option
-    - `T`: Time to expiration in years
-    - `r`: Risk-free rate
-    - `vol`: Volatility of the stock
-    - `q`: Dividend yield
-    - `N`: Number of time steps in the binomial model
-    - `IsCall`: Boolean indicating if the option is a call (1) or put (0)
-    - `IsAmer`: Boolean indicating if the option is American (1) or European (0)
-    - `Method`: String indicating which binomial model to use (`EQP`, `LR`, `CRR`, `TIAN`)
+    % - `S`: Current stock price
+    % - `K`: Strike price of the option
+    % - `T`: Time to expiration in years
+    % - `r`: Risk-free rate
+    % - `vol`: Volatility of the stock
+    % - `q`: Dividend yield
+    % - `N`: Number of time steps in the binomial model
+    % - `IsCall`: Boolean indicating if the option is a call (1) or put (0)
+    % - `IsAmer`: Boolean indicating if the option is American (1) or European (0)
+    % - `Method`: String indicating which binomial model to use (`EQP`, `LR`, `CRR`, `TIAN`)
 
 dT = T/N;
 
