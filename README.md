@@ -1,4 +1,4 @@
-# Option Pricing Models Repository
+# Binomial Tree Option Pricing Models
 
 This repository contains MATLAB functions for pricing options using the Binomial model approach. It includes two main scripts: `Binomial.m` and `BinomialTree.m`, each serving distinct roles in the computation of option prices.
 
